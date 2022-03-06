@@ -1,0 +1,40 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div style="background-color: cyan;">
+    <label>channel1</label>
+    <ul id="channel1"></ul>
+  </div>
+  <div style="background-color: aquamarine;">
+    <label>channel2</label>
+    <ul id="channel2"></ul>
+  </div>
+  <div style="background-color: bisque;">
+    <label>channel3</label>
+    <ul id="channel3"></ul>
+  </div>
+
+  <div>
+    <label>connections in chat channel</label>
+    <select id="connections">
+    </select><br>
+    <label>User ID: </label><label id="userId"></label><br>
+    <label>User Name: </label><label id="userName"></label><br>
+    <label>Chat Message</label><input id="message" type="text" /><br>
+    <button onclick="handleSubmitChannelMessage()">Send Channel Message</button>
+    <button onclick="handleLoadChannelMessage()">Load Channel Message</button>
+    <button onclick="handleSubmitPrivateMessage()">Send Private Message</button>
+    <button onclick="handleLoadPrivateMessage()">Load Private Message</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  <script src="./chat-socket.js"></script>
+</body>
+
+</html>
