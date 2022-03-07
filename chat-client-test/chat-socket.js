@@ -9,6 +9,8 @@ const channelId = "channel1";
 // const userName = "テスト名前";
 document.getElementById('userId').innerHTML = userId;
 document.getElementById('userName').innerHTML = userName;
+document.getElementById('channelId').innerHTML = channelId;
+
 
 // const socket = io('http://localhost:3000', {
 //   path: '/chat',
@@ -28,7 +30,28 @@ const socket = io('http://localhost:3001', {
 
 //const socket = io("http://localhost:3000")
 
+socket.on('new-connection', (chatInfo) => {
+  console.log(chatInfo);
+  addConnectionListItem(chatInfo.connectionId, chatInfo.userName)
+})
+
+socket.on('new-disconnection', (chatInfo) => {
+  console.log(chatInfo);
+})
+
 socket.on('new-channel-message', (chatInfo) => {
+  console.log(chatInfo);
+})
+
+socket.on('channel-message-history', (chatInfo) => {
+  console.log(chatInfo);
+})
+
+socket.on('new-private-message', (chatInfo) => {
+  console.log(chatInfo);
+})
+
+socket.on('channel-private-history', (chatInfo) => {
   console.log(chatInfo);
 })
 
@@ -42,11 +65,23 @@ const handleSubmitChannelMessage = () => {
   })
 };
 const handleLoadChannelMessage = () => {
-  
+  console.log('load-channel-message-history');
+  socket.emit('load-channel-message-history', {
+    channelId: channelId
+  })
 }
 
 const handleSubmitPrivateMessage = () => {
-  
+  console.log('send-private-message');
+  socket.emit('send-private-message', {
+    channelId: channelId,
+    senderUserName: userId,
+    senderUserId: userName,
+    receiverUserName: "test",
+    receiverUserId: "123",
+    receiverConnectionId: connectionIdList.value,
+    message: message.value
+  })
 };
 
 const handleLoadPrivateMessage = () => {

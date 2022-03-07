@@ -6,6 +6,10 @@ interface ChannelMessageDto {
   message: string;
 }
 
+interface LoadChannelMessageHistoryDto {
+  channelId: string;
+}
+
 interface PrivateMessageDto {
   _id?: string;
   senderUserName: string;
