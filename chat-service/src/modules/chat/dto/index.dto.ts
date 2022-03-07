@@ -7,11 +7,12 @@ interface ChannelMessageDto {
 }
 
 interface PrivateMessageDto {
-  userId: string;
-  friendId: string;
-  content: string;
-  width?: number;
-  height?: number;
-  messageType: string;
-  time: number;
+  _id?: string;
+  senderUserName: string;
+  senderUserId: string;
+  channelId: string;
+  receiverUserName: string;
+  receiverUserId?: string;
+  receiverConnectionId?: string;
+  message: string;
 }

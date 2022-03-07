@@ -17,8 +17,13 @@ document.getElementById('userName').innerHTML = userName;
 //   upgrade: false
 // });
 
-const socket = io('http://localhost:3000', {
-  path: '/chat'
+const socket = io('http://localhost:3001', {
+  path: '/chat',
+  query: {
+    "userId": userId,
+    "userName": userName,
+    "channelId": channelId
+  }
 });
 
 //const socket = io("http://localhost:3000")

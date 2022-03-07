@@ -1,11 +1,12 @@
 import { NestFactory } from '@nestjs/core';
-//import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import cors from 'cors';
 import { AppModule } from './app.module';
 //import { RedisIoAdapter } from './common/util/redis-io-adapter';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  //const app = await NestFactory.create(AppModule);
+
   // const redisIoAdapter = new RedisIoAdapter(app);
   // await redisIoAdapter.connectToRedis();
   // app.useWebSocketAdapter(redisIoAdapter);
@@ -27,16 +28,18 @@ async function bootstrap() {
 
   //app.use(cors({ credentials: true, origin: 'http://127.0.0.1:5501/' }));
 
-  await app.listen(3000);
+  //await app.listen(3000);
 
-  // const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
-  //   transport: Transport.REDIS,
-  //   options: {
-  //     url: 'redis://localhost:6379',
-  //   },
-  // });
+  //https://docs.nestjs.com/microservices/redis#context
 
-  // await app.listen(()=>{ console.log("running")});
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
+    transport: Transport.REDIS,
+    options: {
+      url: 'redis://localhost:6379',
+    },
+  });
+
+  await app.listen(()=>{ console.log("running")});
 
 }
 bootstrap();

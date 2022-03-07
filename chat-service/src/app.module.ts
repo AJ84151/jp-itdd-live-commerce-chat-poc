@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ChannelModule } from './modules/channel/channel.module';
 import { ChatModule } from './modules/chat/chat.module';
+import { ClientsModule, Transport } from '@nestjs/microservices';
 
 
 @Module({
@@ -16,6 +17,15 @@ import { ChatModule } from './modules/chat/chat.module';
       autoLoadEntities: true,
       synchronize: true
     }),
+    ClientsModule.register([
+      {
+        name: ' CHAT_SERVICE',
+        transport: Transport.REDIS,
+        options: {
+          url: 'redis://localhost:6379',
+        }
+      },
+    ]),
     ChannelModule,
     ChatModule
   ],
