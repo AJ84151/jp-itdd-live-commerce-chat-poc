@@ -48,11 +48,11 @@ export class SocketIoAdapter extends AbstractWsAdapter {
           methods: ['OPTIONS','GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
           credentials: true,
         },
-        cookie: true,
+        //cookie: true,
         maxHttpBufferSize: 1e6,
       });
 
-      const pubClient = createClient({ url:"redis://127.0.0.1:6379" });
+      const pubClient = createClient({ url:"redis://localhost:6379" });
       const subClient = pubClient.duplicate();
       s.adapter(createAdapter(pubClient, subClient));
 

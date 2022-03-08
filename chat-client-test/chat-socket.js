@@ -21,6 +21,7 @@ document.getElementById('channelId').innerHTML = channelId;
 
 const socket = io('http://localhost:3001', {
   path: '/chat',
+  transports: ["websocket"],
   query: {
     "userId": userId,
     "userName": userName,
