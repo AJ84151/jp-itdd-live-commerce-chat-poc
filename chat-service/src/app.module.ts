@@ -17,15 +17,15 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
       autoLoadEntities: true,
       synchronize: true
     }),
-    ClientsModule.register([
-      {
-        name: ' CHAT_SERVICE',
-        transport: Transport.REDIS,
-        options: {
-          url: 'redis://localhost:6379',
-        }
-      },
-    ]),
+    // ClientsModule.register([
+    //   {
+    //     name: ' CHAT_SERVICE',
+    //     transport: Transport.REDIS,
+    //     options: {
+    //       url: 'redis://localhost:6379',
+    //     }
+    //   },
+    // ]),
     ChannelModule,
     ChatModule
   ],
