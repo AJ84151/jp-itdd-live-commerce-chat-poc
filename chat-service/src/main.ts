@@ -7,7 +7,7 @@ import { SocketIoAdapter } from './common/util/redis-io-adapter';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.useWebSocketAdapter(new SocketIoAdapter(app, true));
+  //app.useWebSocketAdapter(new SocketIoAdapter(app, true));
   // const redisIoAdapter = new RedisIoAdapter(app);
   // await redisIoAdapter.connectToRedis();
   // app.useWebSocketAdapter(redisIoAdapter);

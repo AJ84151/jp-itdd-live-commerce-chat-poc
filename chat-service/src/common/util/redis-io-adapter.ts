@@ -7,10 +7,11 @@ import {
 import { DISCONNECT_EVENT } from '@nestjs/websockets/constants';
 import { fromEvent, Observable } from 'rxjs';
 import { filter, first, map, mergeMap, share, takeUntil } from 'rxjs/operators';
-import { Server } from 'socket.io';
+import { Server, ServerOptions } from 'socket.io';
 import { CustomOrigin } from '@nestjs/common/interfaces/external/cors-options.interface';
 import { createClient } from "redis";
 import { createAdapter } from "@socket.io/redis-adapter";
+import { IoAdapter } from '@nestjs/platform-socket.io';
 
 export class SocketIoAdapter extends AbstractWsAdapter {
   constructor(
