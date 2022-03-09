@@ -56,7 +56,6 @@ export class SocketIoAdapter extends AbstractWsAdapter {
       const pubClient = createClient({ url:"redis://127.0.0.1:6379" });
       const subClient = pubClient.duplicate();
       s.adapter(createAdapter(pubClient, subClient));
-
       return s;
     }
     return new Server(port, options);
@@ -107,4 +106,24 @@ export class SocketIoAdapter extends AbstractWsAdapter {
     }
     return { data: payload };
   }
+}
+
+export class RedisIoAdapter extends IoAdapter {
+    private adapterConstructor: ReturnType<typeof createAdapter>;
+
+    async connectToRedis(): Promise<void> {
+        const pubClient = createClient({ url: `redis://localhost:6379` });
+        const subClient = pubClient.duplicate();
+        console.log(11111111)
+        await Promise.all([pubClient.connect(), subClient.connect()]);
+        console.log(22222222)
+        this.adapterConstructor = createAdapter(pubClient, subClient);
+    }
+
+    createIOServer(port: number, options?: ServerOptions): any {
+        const server = super.createIOServer(port, options);
+        server.adapter(this.adapterConstructor);
+        console.log(333333333)
+        return server;
+    }
 }
