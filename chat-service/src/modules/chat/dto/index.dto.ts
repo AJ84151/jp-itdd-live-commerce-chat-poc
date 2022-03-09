@@ -20,3 +20,10 @@ interface PrivateMessageDto {
   receiverConnectionId?: string;
   message: string;
 }
+
+
+interface LoadPrivateMessageHistoryDto {
+  senderUserId: string; 
+  receiverUserId: string;
+  channelId: string;
+}

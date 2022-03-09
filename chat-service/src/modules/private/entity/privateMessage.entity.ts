@@ -1,7 +1,7 @@
 import { Entity, Column, ObjectIdColumn } from 'typeorm';
 
 @Entity()
-export class ChannelMessage {
+export class PrivateMessage {
   @ObjectIdColumn()
   _id: string;
 
@@ -13,6 +13,15 @@ export class ChannelMessage {
 
   @Column()
   senderConnectionId: string;
+
+  @Column()
+  receiverUserId: string;
+
+  @Column()
+  receiverUserName: string;
+
+  @Column()
+  receiverConnectionId: string;
 
   @Column()
   channelId: string;
